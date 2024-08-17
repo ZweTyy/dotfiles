@@ -50,6 +50,7 @@ keymap.set("n", "<leadergp", "<cmd>Gitsigns preview hunk<CR>", { desc = "Preview
 
 -- Harpoon
 keymap.set("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<CR>", { desc = "Add file to harpoon" })
+keymap.set("n", "<leader>hr", "<cmd>lua require('harpoon.mark').remove_file()<CR>", { desc = "Remove file from harpoon" })
 keymap.set("n", "<leader>ht", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", { desc = "Toggle harpoon quick menu" })
 keymap.set("n", "<leader>1", "<cmd>lua require('harpoon.ui').nav_file(1)<CR>", { desc = "Navigate to harpoon file 1" })
 keymap.set("n", "<leader>2", "<cmd>lua require('harpoon.ui').nav_file(2)<CR>", { desc = "Navigate to harpoon file 2" })
