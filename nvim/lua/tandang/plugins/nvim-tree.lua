@@ -50,6 +50,11 @@ return {
       },
     })
 
+    -- make nvim-tree background transparent
+    vim.cmd([[ highlight NvimTreeNormal guibg=NONE ctermbg=NONE ]])
+    vim.cmd([[ highlight NvimTreeEndOfBuffer guibg=NONE ctermbg=NONE ]])
+    vim.cmd([[ highlight NvimTreeVertSplit guifg=NONE guibg=NONE ]])
+
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
 
