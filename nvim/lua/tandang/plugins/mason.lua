@@ -34,7 +34,9 @@ return {
 					"html",
 					"jsonls",
 					"jdtls",
-					"tsserver",
+					-- "tsserver",
+                    -- We use ts_ls instead of tsserver
+                    "ts_ls",
 					"biome",
 					"ltex",
 					"lua_ls",
@@ -89,7 +91,7 @@ return {
 			lspconfig.jdtls.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.tsserver.setup({
+			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 				single_file_support = false,
 				root_dir = function(filename)
