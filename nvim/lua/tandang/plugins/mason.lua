@@ -41,6 +41,7 @@ return {
 					"marksman",
 					"pyright",
 					"sqlls",
+					"tailwindcss",
 				},
 				-- auto-install configured servers (with lspconfig)
 				automatic_installation = true, -- not the same as ensure_installed
@@ -84,13 +85,13 @@ return {
 			lspconfig.jsonls.setup({
 				capabilities = capabilities,
 			})
-            -- Use nvim-jdtls instead of lspconfig.jdtls
+			-- Use nvim-jdtls instead of lspconfig.jdtls
 			lspconfig.jdtls.setup({
 				capabilities = capabilities,
 			})
 			lspconfig.tsserver.setup({
 				capabilities = capabilities,
-                single_file_support = false,
+				single_file_support = false,
 				root_dir = function(filename)
 					local root_pattern = util.root_pattern
 					-- Check for Deno project markers
@@ -107,6 +108,9 @@ return {
 					end
 				end,
 			})
+            lspconfig.tailwindcss.setup({
+                capabilities = capabilities,
+            })
 			lspconfig.biome.setup({
 				capabilities = capabilities,
 			})
