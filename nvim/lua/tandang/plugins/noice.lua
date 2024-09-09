@@ -3,30 +3,38 @@ return {
 	event = "VeryLazy",
 	opts = {},
 	dependencies = {
-		-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 		"MunifTanjim/nui.nvim",
-		-- OPTIONAL:
-		--   `nvim-notify` is only needed, if you want to use the notification view.
-		--   If not available, we use `mini` as the fallback
-		"rcarriga/nvim-notify",
+		"rcarriga/nvim-notify", -- Optional for the notification view
 	},
 	config = function()
 		require("noice").setup({
 			lsp = {
-				-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
 				override = {
 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 					["vim.lsp.util.stylize_markdown"] = true,
-					["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+					["cmp.entry.get_documentation"] = true,
 				},
 			},
-			-- you can enable a preset for easier configuration
+			routes = {
+				{
+					filter = {
+						event = "lsp",
+						kind = "progress",
+						cond = function(message)
+							local client = vim.tbl_get(message.opts, "progress", "client")
+							-- Skip progress messages for jdtls (Java) and fsautocomplete (F#)
+							return client == "jdtls" or client == "fsautocomplete"
+						end,
+					},
+					opts = { skip = true },
+				},
+			},
 			presets = {
-				bottom_search = false, -- use a classic bottom cmdline for search
-				command_palette = true, -- position the cmdline and popupmenu together
-				long_message_to_split = false, -- long messages will be sent to a split
-				inc_rename = false, -- enables an input dialog for inc-rename.nvim
-				lsp_doc_border = false, -- add a border to hover docs and signature help
+				bottom_search = false,
+				command_palette = true,
+				long_message_to_split = false,
+				inc_rename = false,
+				lsp_doc_border = false,
 			},
 		})
 	end,
