@@ -82,7 +82,9 @@ return {
 						".DS_Store",
 					},
 				},
-				follow_current_file = true, -- Automatically focus on the current file
+				follow_current_file = {
+					enabled = true
+				}, -- Automatically focus on the current file
 				hijack_netrw_behavior = "open_default",
 				use_libuv_file_watcher = true,
 			},
